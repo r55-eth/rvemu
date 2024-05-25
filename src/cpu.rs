@@ -210,6 +210,7 @@ impl fmt::Display for FRegisters {
 }
 
 /// The CPU to contain registers, a program counter, status, and a privileged mode.
+#[derive(Debug)]
 pub struct Cpu {
     /// 64-bit integer registers.
     pub xregs: XRegisters,

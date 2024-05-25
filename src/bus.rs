@@ -47,6 +47,7 @@ pub const DRAM_BASE: u64 = 0x8000_0000;
 const DRAM_END: u64 = DRAM_BASE + DRAM_SIZE;
 
 /// The system bus.
+#[derive(Debug)]
 pub struct Bus {
     pub clint: Clint,
     pub plic: Plic,

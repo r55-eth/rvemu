@@ -4,6 +4,7 @@ use crate::cpu::Cpu;
 use crate::exception::{Exception, Trap};
 
 /// The emulator to hold a CPU.
+#[derive(Debug)]
 pub struct Emulator {
     /// The CPU which is the core implementation of this emulator.
     pub cpu: Cpu,
