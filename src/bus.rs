@@ -104,7 +104,8 @@ impl Bus {
         }
     }
 
-    pub fn get_dram_slice(&mut self, range: Range<usize>) -> Result<&mut [u8], Exception> {
+    pub fn get_dram_slice(&mut self, range: Range<u64>) -> Result<&mut [u8], Exception> {
+        let range = (range.start - DRAM_BASE) as usize..(range.end as usize - DRAM_BASE as usize);
         self.dram
             .dram
             .get_mut(range)
