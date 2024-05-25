@@ -1,6 +1,8 @@
 //! The bus module contains the system bus which can access the memroy or memory-mapped peripheral
 //! devices.
 
+use std::ops::Range;
+
 use crate::devices::{clint::Clint, plic::Plic, uart::Uart, virtio_blk::Virtio};
 use crate::dram::{Dram, DRAM_SIZE};
 use crate::exception::Exception;
@@ -100,5 +102,12 @@ impl Bus {
             DRAM_BASE..=DRAM_END => self.dram.write(addr, value, size),
             _ => Err(Exception::StoreAMOAccessFault),
         }
+    }
+
+    pub fn get_dram_slice(&mut self, range: Range<usize>) -> Result<&mut [u8], Exception> {
+        self.dram
+            .dram
+            .get_mut(range)
+            .ok_or(Exception::LoadAccessFault)
     }
 }
