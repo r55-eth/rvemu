@@ -118,7 +118,7 @@ impl Emulator {
 
     /// Start executing the emulator.
     pub fn start(&mut self) -> Result<(), Exception> {
-        if self.is_debug || self.cpu.is_count {
+        if self.is_debug {
             self.debug_start();
         }
 
